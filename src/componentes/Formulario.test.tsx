@@ -103,3 +103,5 @@ describe('o comportamento do Formulario.tsx', () => {
         expect(mensagemDeErro).toBeNull()
     })
 })
+
+
