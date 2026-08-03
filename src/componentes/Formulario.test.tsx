@@ -73,7 +73,7 @@ describe('o comportamento do Formulario.tsx', () => {
     })
     
     test('a mensagem de erro deve sumir após os timers', () => {
-        jest.useFakeTimers()
+        vi.useFakeTimers()
         render(
             <RecoilRoot>
                 <Formulario />
@@ -96,12 +96,12 @@ describe('o comportamento do Formulario.tsx', () => {
         expect(mensagemDeErro).toBeInTheDocument()
     
         act(() => {
-            jest.runAllTimers()
+            vi.runAllTimers()
         });
     
         mensagemDeErro = screen.queryByRole('alert')
         expect(mensagemDeErro).toBeNull()
+        vi.useRealTimers()
     })
 })
-
 

@@ -1,10 +1,10 @@
 //src/componentes/Card/index.tsx
 
-import React from "react"
+import { PropsWithChildren } from "react"
 
 import './estilos.css'
 
-const Card: React.FC = ({ children }) => {
+const Card = ({ children }: PropsWithChildren) => {
     return (
         <div className="card">
             {children}

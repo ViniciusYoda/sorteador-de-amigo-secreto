@@ -5,14 +5,14 @@ import { useListaDeParticipantes } from "../state/hook/useListaDeParticipantes";
 import { useResultadoSorteio } from "../state/hook/useResultadoSorteio";
 import Sorteio from "./Sorteio";
 
-jest.mock('../state/hook/useListaDeParticipantes', () => {
+vi.mock('../state/hook/useListaDeParticipantes', () => {
     return {
-        useListaDeParticipantes: jest.fn()
+        useListaDeParticipantes: vi.fn()
     }
 })
-jest.mock('../state/hook/useResultadoSorteio', () => {
+vi.mock('../state/hook/useResultadoSorteio', () => {
     return {
-        useResultadoSorteio: jest.fn()
+        useResultadoSorteio: vi.fn()
     }
 })
 
@@ -29,8 +29,8 @@ describe('na pagina de sorteio', () => {
     ])
 
     beforeEach(() => {
-        (useListaDeParticipantes as jest.Mock).mockReturnValue(participantes);
-        (useResultadoSorteio as jest.Mock).mockReturnValue(resultado);
+        vi.mocked(useListaDeParticipantes).mockReturnValue(participantes);
+        vi.mocked(useResultadoSorteio).mockReturnValue(resultado);
     })
     test('todos os participantes podem exibir o seu amigo secreto', () => {
         render(<RecoilRoot>
@@ -45,7 +45,7 @@ describe('na pagina de sorteio', () => {
             <Sorteio />
         </RecoilRoot>)
 
-        const select = screen.getByPlaceholderText('Selecione o seu nome')
+        const select = screen.getByRole('combobox', { name: 'Selecione o seu nome' })
         
         fireEvent.change(select, {
             target: {
@@ -57,7 +57,7 @@ describe('na pagina de sorteio', () => {
 
         fireEvent.click(botao)
 
-        const amigoSecreto = screen.getByRole('alert')
+        const amigoSecreto = screen.getByRole('status')
 
         expect(amigoSecreto).toBeInTheDocument()
 

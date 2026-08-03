@@ -16,7 +16,7 @@ const Formulario = () => {
 
     const adicionarParticipante = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
-        adicionarNaLista(nome)
+        adicionarNaLista(nome.trim())
         setNome('')
         inputRef.current?.focus()
     }
@@ -28,9 +28,12 @@ const Formulario = () => {
                 value={nome}
                 onChange={evento => setNome(evento.target.value)}
                 type="text"
+                aria-label="Nome do participante"
                 placeholder="Insira os nomes dos participantes"
+                autoComplete="off"
+                maxLength={60}
             />
-            <button disabled={!nome}>Adicionar</button>
+            <button disabled={!nome.trim()}>Adicionar</button>
         </div>
         {mensagemDeErro && <p className="alerta erro" role="alert">{mensagemDeErro}</p>}
     </form>)

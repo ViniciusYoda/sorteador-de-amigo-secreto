@@ -6,13 +6,23 @@ export const useAdicionarParticipante = () => {
     const lista = useRecoilValue(listaParticipantesState)
     const setErro = useSetRecoilState(erroState)
     return (nomeDoParticipante: string) => {
-        if (lista.includes(nomeDoParticipante)) {
+        const nomeNormalizado = nomeDoParticipante.trim()
+        const nomeJaExiste = lista.some(
+            nome => nome.localeCompare(nomeNormalizado, 'pt-BR', { sensitivity: 'base' }) === 0
+        )
+
+        if (!nomeNormalizado) {
+            return
+        }
+
+        if (nomeJaExiste) {
             setErro('Nomes duplicados não são permitidos!')
             setTimeout(() => {
                 setErro("")
             }, 5000)
             return
         }
-        return setLista(listaAtual => [...listaAtual, nomeDoParticipante])
+        setErro('')
+        return setLista(listaAtual => [...listaAtual, nomeNormalizado])
     }
 }

@@ -4,15 +4,15 @@ import { RecoilRoot } from 'recoil'
 import { useListaDeParticipantes } from '../state/hook/useListaDeParticipantes'
 import ListaParticipantes from './ListaParticipantes'
 
-jest.mock('../state/hook/useListaDeParticipantes', () => {
+vi.mock('../state/hook/useListaDeParticipantes', () => {
     return {
-        useListaDeParticipantes: jest.fn()
+        useListaDeParticipantes: vi.fn()
     }
 })
 
 describe('uma lista vazia de participantes', () => {
     beforeEach(() => {
-        (useListaDeParticipantes as jest.Mock).mockReturnValue([])
+        vi.mocked(useListaDeParticipantes).mockReturnValue([])
     })
     test('deve ser renderizada sem elementos', () => {
         render(<RecoilRoot>
@@ -27,7 +27,7 @@ describe('uma lista vazia de participantes', () => {
 describe('uma lista preenchida de participantes', () => {
     const participantes = ['Ana', 'Catarina']
     beforeEach(() => {
-        (useListaDeParticipantes as jest.Mock).mockReturnValue(participantes)
+        vi.mocked(useListaDeParticipantes).mockReturnValue(participantes)
     })
     test('deve ser renderizada sem elementos', () => {
         render(<RecoilRoot>

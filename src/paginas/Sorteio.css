@@ -25,7 +25,7 @@ footer.sorteio {
     cursor: not-allowed;
 }
 
-.botao-sortear:hover {
+.botao-sortear:hover:not(:disabled) {
     background-color: #4B69FD;
 }
 

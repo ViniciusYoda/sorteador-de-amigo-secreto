@@ -1,12 +1,12 @@
 /* src/index.css */
 html {
+  background: #4B69FD;
   font-family: 'Poppins', sans-serif;
 }
 
-html {
-  background: #4B69FD;
-  border: 2px solid black;
-  font-family: 'Poppins', sans-serif;
+body {
+  margin: 0;
+  min-width: 320px;
 }
 
 #root {
@@ -28,9 +28,21 @@ h2 {
   color: #4B69FD;
 }
 
+button,
+input,
+select {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #4B69FD;
+  outline-offset: 3px;
+}
+
 ul li {
   font-size: 18px;
   font-weight: 300;
   margin: 8px 0;
 }
-

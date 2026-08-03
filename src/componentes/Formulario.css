@@ -33,7 +33,7 @@
     background-color: #c4c4c4;
 }
 
-.grupo-input-btn button:hover {
+.grupo-input-btn button:hover:not(:disabled) {
     opacity: 0.8;
 }
 

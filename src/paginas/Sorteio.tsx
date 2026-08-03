@@ -11,7 +11,7 @@ const Sorteio = () => {
     const participantes = useListaDeParticipantes()
 
     const [participanteDaVez, setParticipanteDaVez] = useState('')
-    const [amigoScreto, setAmigoSecreto] = useState('')
+    const [amigoSecreto, setAmigoSecreto] = useState('')
 
     const resultado = useResultadoSorteio()
 
@@ -28,19 +28,28 @@ const Sorteio = () => {
             <form onSubmit={sortear}>
                 <select
                     required
-                    name="participanteDavez"
-                    id="participanteDavez"
-                    placeholder="Selecione o seu nome"
+                    name="participanteDaVez"
+                    id="participanteDaVez"
+                    aria-label="Selecione o seu nome"
                     value={participanteDaVez}
-                    onChange={evento => setParticipanteDaVez(evento.target.value)}
+                    onChange={evento => {
+                        setParticipanteDaVez(evento.target.value)
+                        setAmigoSecreto('')
+                    }}
                 >
-                    <option>Selecione seu nome</option>
-                    {participantes.map(participante => <option key={participante}>{participante}</option>)}
+                    <option value="" disabled>Selecione seu nome</option>
+                    {participantes.map(participante => (
+                        <option key={participante} value={participante}>{participante}</option>
+                    ))}
                 </select>
-                <p>Clique em em sortear para ver quem é seu amigo secreto!</p>
-                <button className="botao-sortear">Sortear</button>
+                <p>Clique em sortear para ver quem é seu amigo secreto!</p>
+                <button className="botao-sortear" disabled={!participanteDaVez}>Sortear</button>
             </form>
-            {amigoScreto && <p className="resultado" role="alert">{amigoScreto}</p>}
+            {amigoSecreto && (
+                <p className="resultado" role="status" aria-live="polite">
+                    Seu amigo secreto é: <strong>{amigoSecreto}</strong>
+                </p>
+            )}
             <footer className="sorteio">
                 <img src="/imagens/aviao.png" className="aviao" alt="Um desenho de um avião de papel" />
             </footer>

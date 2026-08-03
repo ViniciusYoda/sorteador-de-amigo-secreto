@@ -10,3 +10,10 @@
     margin-top: -32px;
     justify-content: center;
 }
+
+@media screen and (max-width: 800px) {
+    .card {
+        border-radius: 40px 40px 0 0;
+        padding: 48px 24px;
+    }
+}

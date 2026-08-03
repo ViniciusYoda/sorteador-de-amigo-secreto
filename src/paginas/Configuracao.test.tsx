@@ -3,9 +3,9 @@ import React from "react";
 import { RecoilRoot } from "recoil";
 import Configuracao from "./Configuracao";
 
-const mockNavegacao = jest.fn()
+const mockNavegacao = vi.fn()
 
-jest.mock('react-router-dom', () => {
+vi.mock('react-router-dom', () => {
     return {
         useNavigate: () => mockNavegacao
     }

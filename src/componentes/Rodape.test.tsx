@@ -4,22 +4,22 @@ import { RecoilRoot } from "recoil";
 import { useListaDeParticipantes } from "../state/hook/useListaDeParticipantes";
 import Rodape from "./Rodape";
 
-jest.mock('../state/hook/useListaDeParticipantes', () => {
+vi.mock('../state/hook/useListaDeParticipantes', () => {
     return {
-        useListaDeParticipantes: jest.fn()
+        useListaDeParticipantes: vi.fn()
     }
 })
 
-const mockNavegacao = jest.fn()
-const mockSorteio = jest.fn()
+const mockNavegacao = vi.fn()
+const mockSorteio = vi.fn()
 
-jest.mock('../state/hook/useSorteador', () => {
+vi.mock('../state/hook/useSorteador', () => {
     return {
         useSorteador: () => mockSorteio
     }
 })
 
-jest.mock('react-router-dom', () => {
+vi.mock('react-router-dom', () => {
     return {
         useNavigate: () => mockNavegacao
     }
@@ -27,7 +27,7 @@ jest.mock('react-router-dom', () => {
 
 describe('quando não existem participantes suficientes', () => {
     beforeEach(() => {
-        (useListaDeParticipantes as jest.Mock).mockReturnValue([])
+        vi.mocked(useListaDeParticipantes).mockReturnValue([])
     })
     test('a brincadeira não pode ser iniciada', () => {
         render(<RecoilRoot>
@@ -40,7 +40,7 @@ describe('quando não existem participantes suficientes', () => {
 
 describe('quando existem participantes suficientes', () => {
     beforeEach(() => {
-        (useListaDeParticipantes as jest.Mock).mockReturnValue(['Ana', 'Catarina', 'Josefina'])
+        vi.mocked(useListaDeParticipantes).mockReturnValue(['Ana', 'Catarina', 'Josefina'])
     })
     test('a brincadeira pode ser iniciada', () => {
         render(<RecoilRoot>

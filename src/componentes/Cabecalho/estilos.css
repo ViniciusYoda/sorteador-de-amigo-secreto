@@ -7,7 +7,7 @@
 }
 
 .imagem-logo {
-    background-image: url("/public/imagens/logo.png");
+    background-image: url("/imagens/logo.png");
     width: 351px;
     height: 117px;
 }
@@ -24,7 +24,7 @@
     }
 
     .imagem-logo {
-        background-image: url("/public/imagens/logo-pequeno.png");
+        background-image: url("/imagens/logo-pequeno.png");
         width: 235px;
         height: 199px;
     }
